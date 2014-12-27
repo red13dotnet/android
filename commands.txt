@@ -1,0 +1,38 @@
+make clean
+make clobber
+/kernel
+make clean
+make mrproper
+/
+source ./build/envsetup.sh
+lunch
+6
+
+/kernel
+export ARCH=arm
+export CROSS_COMPILE=../prebuilts/gcc/linux-x86/arm/arm-eabi-4.6/bin/arm-eabi-
+export UTS_RELEASE="3.0.36+"
+make bonovo_rk3188_defconfig (amplified_defconfig)
+make menuconfig
+add + to version
+config proc update
+display driver / boot logo
+save
+export ARCH=arm
+export CROSS_COMPILE=../prebuilts/gcc/linux-x86/arm/arm-eabi-4.6/bin/arm-eabi-
+export UTS_RELEASE="3.0.36+"
+make -j8 kernel.img
+make modules
+sudo make modules_install
+
+/
+make -j8
+./mkimage.sh ota
+
+
+
+
+added local version addition '+'
+added /proc/config.gz
+changed boot logo to 224 color standard linux logo
+
